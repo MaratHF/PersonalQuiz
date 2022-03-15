@@ -14,10 +14,22 @@ class ResultViewController: UIViewController {
     
     var answers: [Answer]!
     
+    private var dogAnswer: Animal!
+    private var catAnswer: Animal!
+    private var rabbitAnswer: Animal!
+    private var turtleAnswer: Animal!
+    
+    private var dogNumber = 0
+    private var catNumber = 0
+    private var rabbitNumber = 0
+    private var turtleNumber = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getPollResult()
+        
+        displayResultOnView()
         
         navigationItem.hidesBackButton = true
     }
@@ -26,16 +38,6 @@ class ResultViewController: UIViewController {
 extension ResultViewController {
     
     private func getPollResult() {
-        
-        var dogAnswer: Animal!
-        var catAnswer: Animal!
-        var rabbitAnswer: Animal!
-        var turtleAnswer: Animal!
-        
-        var dogNumber = 0
-        var catNumber = 0
-        var rabbitNumber = 0
-        var turtleNumber = 0
         
         for answer in answers {
             if answer.animal == .dog {
@@ -52,6 +54,11 @@ extension ResultViewController {
                 turtleNumber += 1
             }
         }
+        
+        
+    }
+    
+    private func displayResultOnView() {
         
         if dogNumber >= catNumber && dogNumber >= rabbitNumber && dogNumber >= turtleNumber {
             animalLabel.text = "Вы - \(dogAnswer.rawValue) !"
